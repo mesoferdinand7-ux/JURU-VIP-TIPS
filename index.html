@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <title>JURU VVIP | Smart Slip Engine</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">J</div><div><b>JURU <span>VVIP</span></b><small>SMART SLIP ENGINE</small></div></div>
+      <div class="profile"><div class="avatar">JV</div><div><b id="userLabel">Guest Member</b><small>VVIP ACCESS</small></div></div>
+      <nav>
+        <button class="nav active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+        <button class="nav" data-page="fixtures">▦ <span>Fixtures & Markets</span></button>
+        <button class="nav" data-page="slip">▤ <span>My Bet Slip</span><i id="slipCount">0</i></button>
+        <button class="nav" data-page="saved">☆ <span>Saved Slips</span></button>
+        <button class="nav" data-page="settings">⚙ <span>Settings / API</span></button>
+        <button class="nav" data-page="admin">♜ <span>Owner Panel</span></button>
+      </nav>
+      <div class="side-bottom"><span class="live-dot"></span> SYSTEM READY <small>JURU VVIP • v1.0</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div><div class="eyebrow">WELCOME TO YOUR PRIVATE SPORTS DESK</div><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><span class="status"><i></i> DEMO MODE</span><button class="outline" id="quickSlip">Slip <b id="topSlipCount">0</b></button></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="hero">
+          <div><div class="eyebrow gold">JURU VVIP • SMART SLIP ENGINE</div><h2>Build smarter.<br><em>Play responsibly.</em></h2><p>Organise fixtures, compare odds and build your own accumulator in one place.</p><button class="primary" data-go="fixtures">BUILD A BET SLIP <span>→</span></button></div>
+          <div class="hero-art"><div class="orb">JV</div><div class="ring r1"></div><div class="ring r2"></div><span class="art-tag">VVIP<br>SPORTS DESK</span></div>
+        </div>
+        <div class="stats">
+          <article class="stat"><small>SELECTIONS IN SLIP</small><b id="statSelections">0</b><span>Current builder</span></article>
+          <article class="stat"><small>COMBINED ODDS</small><b id="statOdds">1.00</b><span>Calculated live</span></article>
+          <article class="stat"><small>SAVED SLIPS</small><b id="statSaved">0</b><span>Stored on this device</span></article>
+          <article class="stat"><small>DATA CONNECTION</small><b class="gold-text" id="statApi">Not set</b><span>Configure your provider</span></article>
+        </div>
+        <div class="section-head"><div><div class="eyebrow">YOUR WORKSPACE</div><h3>Quick actions</h3></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="fixtures"><span>＋</span><b>Add a fixture</b><small>Enter match and market odds</small></button>
+          <button class="quick-card" data-go="slip"><span>▤</span><b>Review bet slip</b><small>Check selections and total odds</small></button>
+          <button class="quick-card" data-go="saved"><span>☆</span><b>Saved slips</b><small>Open your saved combinations</small></button>
+          <button class="quick-card" data-go="settings"><span>⌘</span><b>Connect data API</b><small>Add your own sports data source</small></button>
+        </div>
+        <div class="notice"><b>Important:</b> This starter build does not invent predictions or fetch bookmaker odds. Add your own verified fixtures manually or connect a compatible API in Settings. Betting involves financial risk; never stake money you cannot afford to lose.</div>
+      </section>
+
+      <section class="page" id="page-fixtures">
+        <div class="section-head"><div><div class="eyebrow">MATCH CENTRE</div><h3>Fixtures & markets</h3><p class="muted">Add verified match details and choose an outcome.</p></div><button class="primary" id="addFixtureBtn">＋ ADD FIXTURE</button></div>
+        <div class="toolbar"><input id="fixtureSearch" placeholder="Search teams or league..."><select id="leagueFilter"><option value="">All leagues</option></select></div>
+        <div class="fixture-list" id="fixtureList"></div>
+        <div class="empty hidden" id="noFixtures">No fixtures added yet. Use “Add fixture” to enter a match and its odds.</div>
+      </section>
+
+      <section class="page" id="page-slip">
+        <div class="section-head"><div><div class="eyebrow">YOUR COMBINATION</div><h3>Bet slip builder</h3><p class="muted">Review, edit and save your selections.</p></div><button class="text-btn" id="clearSlip">Clear all</button></div>
+        <div class="slip-layout"><div class="panel"><div class="panel-title">YOUR SELECTIONS <span id="slipPanelCount">0 PICKS</span></div><div id="slipItems"></div></div>
+          <div class="panel summary"><div class="panel-title">SLIP SUMMARY</div><div class="summary-row"><span>Selections</span><b id="sumSelections">0</b></div><div class="summary-row"><span>Combined odds</span><b id="sumOdds">1.00</b></div><label for="stake">Stake amount</label><input id="stake" type="number" min="0" step="0.01" value="1"><div class="summary-row potential"><span>Potential return*</span><b id="potentialReturn">1.00</b></div><small class="muted">*Illustrative calculation only, before any fees or bookmaker rules.</small><button class="primary full" id="saveSlip">SAVE THIS SLIP</button></div>
+        </div>
+      </section>
+
+      <section class="page" id="page-saved">
+        <div class="section-head"><div><div class="eyebrow">YOUR LIBRARY</div><h3>Saved slips</h3><p class="muted">Saved locally in this browser on this device.</p></div></div>
+        <div id="savedList" class="saved-list"></div><div class="empty hidden" id="noSaved">You have no saved slips yet.</div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="section-head"><div><div class="eyebrow">CONFIGURATION</div><h3>Settings & API connection</h3><p class="muted">Connect your own compatible data service.</p></div></div>
+        <div class="panel settings-panel"><h4>Sports data provider</h4><p class="muted">Enter the API endpoint and key supplied by your provider. The endpoint must support browser requests (CORS) and return a JSON array of fixtures. Keep private production keys on a secure backend, not in a public HTML file.</p>
+          <label>API endpoint URL</label><input id="apiUrl" type="url" placeholder="https://your-provider.example/api/fixtures">
+          <label>API key (stored only in this browser)</label><input id="apiKey" type="password" placeholder="Paste your API key">
+          <div class="button-row"><button class="primary" id="saveApi">SAVE API SETTINGS</button><button class="outline" id="testApi">TEST / LOAD FIXTURES</button></div><div id="apiMessage" class="api-message"></div>
+          <div class="notice">Expected response: <code>[{"home":"Team A","away":"Team B","league":"League","date":"2026-10-30","markets":[{"name":"Home win","odds":1.8}] }]</code>. Provider formats vary; adapt <code>app.js</code> if needed.</div>
+        </div>
+      </section>
+
+      <section class="page" id="page-admin">
+        <div class="section-head"><div><div class="eyebrow">LOCAL OWNER TOOLS</div><h3>Owner panel</h3><p class="muted">Basic local controls for this prototype.</p></div></div>
+        <div class="stats"><article class="stat"><small>FIXTURES</small><b id="adminFixtures">0</b></article><article class="stat"><small>SAVED SLIPS</small><b id="adminSaved">0</b></article><article class="stat"><small>CURRENT PICKS</small><b id="adminPicks">0</b></article></div>
+        <div class="panel settings-panel"><h4>Local data management</h4><p class="muted">This owner panel is not protected by server authentication. Do not use it to manage real customer accounts or payments.</p><button class="outline danger" id="resetData">RESET LOCAL APP DATA</button></div>
+      </section>
+
+      <footer>© <span id="year"></span> JURU VVIP <span>• SMART SLIP ENGINE</span><span class="footer-right">BET RESPONSIBLY • 18+</span></footer>
+    </main>
+  </div>
+
+  <dialog id="fixtureDialog"><form method="dialog" id="fixtureForm"><div class="dialog-head"><div><div class="eyebrow">MATCH SETUP</div><h3>Add fixture</h3></div><button class="x-btn" value="cancel">×</button></div>
+    <label>Home team</label><input id="homeTeam" required placeholder="e.g. Home FC">
+    <label>Away team</label><input id="awayTeam" required placeholder="e.g. United FC">
+    <label>League / competition</label><input id="league" placeholder="e.g. Premier League">
+    <label>Kick-off date and time</label><input id="matchDate" type="datetime-local">
+    <div class="market-heading"><b>MARKETS & ODDS</b><button type="button" class="text-btn" id="addMarket">＋ Add market</button></div>
+    <div id="marketFields"><div class="market-input"><input class="market-name" required placeholder="Market / outcome (e.g. Home win)"><input class="market-odds" required type="number" min="1.01" step="0.01" placeholder="Odds"><button type="button" class="remove-market">×</button></div></div>
+    <button class="primary full" type="submit" id="submitFixture">ADD TO FIXTURES</button>
+  </form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
